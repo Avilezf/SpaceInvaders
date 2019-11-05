@@ -1,0 +1,38 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Explosion;
+
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Luis
+ */
+public class ExplosionManager {
+
+    private static ArrayList<ExplosionType> explosions = new ArrayList<ExplosionType>();
+
+    public void draw(Graphics2D g) {
+        for (int i = 0; i < explosions.size(); i++) {
+            explosions.get(i).draw(g);
+        }
+    }
+
+    public void update(double delta) {
+        for (int i = 0; i < explosions.size(); i++) {
+            explosions.get(i).update(delta);
+            if (explosions.get(i).destory()) {
+                explosions.remove(i);
+            }
+        }
+    }
+
+    public static void createPixelExplosion(double xPos, double yPos) {
+        ExplosionType et = new PixelExplosion(xPos, yPos);
+        explosions.add(et);
+    }
+}
