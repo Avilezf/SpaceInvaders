@@ -122,7 +122,7 @@ public class EnemyTypeBasic extends EnemyType {
 
     @Override
     public boolean isOutOfBounds() {
-        if (rect.x > 0 && rect.x < Display.WIDTH - rect.width) {
+        if (rect.x > 0 && rect.x < Display.WIDTH - rect.width && rect.y > 0 && rect.y < Display.HEIGHT - 200) {
             return false;
         }
         return true;

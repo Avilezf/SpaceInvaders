@@ -6,6 +6,7 @@
 package State;
 
 import GameScreen.GameScreen;
+import MenuScreen.HighScoreScreen;
 import MenuScreen.MenuScreen;
 import MenuScreen.SetupScreen;
 import java.awt.Canvas;
@@ -26,9 +27,11 @@ public class StateMachine {
         SuperStateMachine game = new GameScreen(this);
         SuperStateMachine menu = new MenuScreen(this);
         SuperStateMachine setup = new SetupScreen(this);
+        SuperStateMachine highscore = new HighScoreScreen(this);
         states.add(menu);
         states.add(game);
         states.add(setup);
+        states.add(highscore);
                 
 
         this.canvas = canvas;

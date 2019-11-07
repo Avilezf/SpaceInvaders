@@ -13,6 +13,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,8 +26,17 @@ public final class Client {
     InetAddress ip;
     String host;
     Socket socket;
-        
+    ArrayList<String> ips = new ArrayList<>();
+    ArrayList<String> Scores = new ArrayList<>();
 
+    public ArrayList<String> getIps() {
+        return ips;
+    }
+
+    public ArrayList<String> getScores() {
+        return Scores;
+    }
+          
     public Client() {
         actualizar();
     }
@@ -43,14 +53,15 @@ public final class Client {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             
-            out.writeUTF(direccion[1]+"/"+GameScreen.SCORE);
+            out.writeUTF(direccion[1]+"/"+Integer.toString(GameScreen.SCORE));
             
-            String mssg = in.readUTF();
-            
-            if (!mssg.equals("")) {
-                GameScreen.SCORE2 = Integer.parseInt(mssg);
+            String[] mensaje;
+            while(!in.readUTF().equals(null)){
+                mensaje = in.readUTF().split("/");
+                ips.add(mensaje[0]);
+                Scores.add(mensaje[1]);
             }
-                        
+            in.readUTF();
             socket.close();
             
         } catch (IOException ex) {

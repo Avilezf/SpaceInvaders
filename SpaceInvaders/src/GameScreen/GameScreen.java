@@ -69,11 +69,10 @@ public class GameScreen extends SuperStateMachine {
 
     @Override
     public void draw(Graphics2D g) {
-        Client client = new Client(); //para actualizar cada vez que dibuja, si no sirve quitenlo y coloquenlo en enemytype cada vez que muere un marciano
+        //Client client = new Client(); //para actualizar cada vez que dibuja, si no sirve quitenlo y coloquenlo en enemytype cada vez que muere un marciano
         g.setColor(Color.white);
         g.setFont(gameScreen);
         g.drawString("Score    " + SCORE, 5, 27);//El signo de : no sirve
-        g.drawString("Score P2    " + SCORE2, 240, 27);
 
         g.setColor(Color.yellow);
         g.setFont(gameScreen);
@@ -97,6 +96,8 @@ public class GameScreen extends SuperStateMachine {
             String complete = "LEVEL COMPLETE!";
             int completeWidth = g.getFontMetrics().stringWidth(complete);
             g.drawString(complete, (Display.WIDTH / 2) - (completeWidth / 2), Display.HEIGHT / 2);
+            Client client = new Client();
+            //Aqui debería mandar el highscore al servidor y el lo verifica
         }
     }
 

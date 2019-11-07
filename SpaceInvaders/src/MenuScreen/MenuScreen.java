@@ -179,7 +179,7 @@ public class MenuScreen extends SuperStateMachine implements KeyListener  {
                     break;
                     
                 case 2:
-                    System.out.println("Sockets");
+                    getStateMachine().setState((byte) 3);
                     break;
                     
                     
